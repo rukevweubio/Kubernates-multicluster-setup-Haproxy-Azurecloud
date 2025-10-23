@@ -210,4 +210,4 @@ sudo systemctl status haproxy
 ```
 ![haproxy  configuration](https://github.com/rukevweubio/Kubernates-multicluster-setup-Haproxy-Azurecloud/blob/main/photo/Screenshot%20(2732).png)
 
-![haproxy  configuration](https://github.com/rukevweubio/Kubernates-multicluster-setup-Haproxy-Azurecloud/blob/main/photo/Screenshot%20(2703).png)
+![haproxy  configuration](https://github.com/rukevweubio/Kubernates-multicluster-setup-Haproxy-Azurecloud/blob/main/photo/Screenshot%20(2733).png)
