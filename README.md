@@ -328,11 +328,11 @@ sudo kubeadm init phase upload-certs --upload-certs
 
 ![ master  and worker node ready](https://github.com/rukevweubio/Kubernates-multicluster-setup-Haproxy-Azurecloud/blob/main/photo/Screenshot%20(2724).png)
 
-### spring-boot-deployment 
-- create a deployment manifest file to deploy the spring-boot-application
--  i have teh docker image on my docker hub
--   dpeloy the manifest by writing the deployment  and the  service  file
-
+ 
+### Application Deployment
+Spring Boot Web Applications
+The apps are deployed as Kubernetes Deployments and Services. Manifests in manifest  directory.
+Example for App1 (app1-deployment.yaml):
 ````
 apiVersion: apps/v1
 kind: Deployment
@@ -366,5 +366,21 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "prod"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-app
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    targetPort: 8080
+    nodePort: 30000
+  selector:
+    app: spring-boot-app1
+
+kubectl apply -f manifest/deployment.yaml
+kubectl apply -f manifest /deployment.yaml
 ````
 
