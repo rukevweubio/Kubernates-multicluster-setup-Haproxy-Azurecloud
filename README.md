@@ -324,4 +324,47 @@ sudo kubeadm token create --print-join-command --ttl 0
 sudo kubeadm init phase upload-certs --upload-certs
 
 ```
+![ master  and worker node ready](https://github.com/rukevweubio/Kubernates-multicluster-setup-Haproxy-Azurecloud/blob/main/photo/Screenshot%20(2718).png)
+
+![ master  and worker node ready](https://github.com/rukevweubio/Kubernates-multicluster-setup-Haproxy-Azurecloud/blob/main/photo/Screenshot%20(2724).png)
+
+### spring-boot-deployment 
+- create a deployment manifest file to deploy the spring-boot-application
+-  i have teh docker image on my docker hub
+-   dpeloy the manifest by writing the deployment  and the  service  file
+
+````
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-deployment
+  labels:
+    app: springboot-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: springboot-app
+  template:
+    metadata:
+      labels:
+        app: springboot-app
+    spec:
+      containers:
+      - name: springboot-container
+        image: rukevweubio/springboot-app:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "256Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
+````
 
