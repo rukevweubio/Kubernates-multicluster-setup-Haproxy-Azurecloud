@@ -117,3 +117,16 @@ variable "haproxy_ip" {
 - terraform validate
 - terraform plan
 - terraform apply -auto-approve
+  
+![terraform provision](https://github.com/rukevweubio/Kubernates-multicluster-setup-Haproxy-Azurecloud/blob/main/photo/Screenshot%20(2688).png)
+
+### This provisions:
+- Resource Group.
+- VNet and Subnets.
+- 5 VMs with Ubuntu 20.04 LTS (or specified OS).
+- SSH access configured with your public key.
+- Basic user data scripts for initial setup (e.g., installing dependencies).
+### Outputs will include IPs:
+- master_ips: Array of master node private IPs.
+- worker_ips: Array of worker node private IPs.
+- haproxy_ip: Public IP of HAProxy VM.
