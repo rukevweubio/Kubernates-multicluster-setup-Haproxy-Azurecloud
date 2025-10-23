@@ -130,3 +130,14 @@ variable "haproxy_ip" {
 - master_ips: Array of master node private IPs.
 - worker_ips: Array of worker node private IPs.
 - haproxy_ip: Public IP of HAProxy VM.
+- 
+![terraform provision](https://github.com/rukevweubio/Kubernates-multicluster-setup-Haproxy-Azurecloud/blob/main/photo/Screenshot%20(2692).png)
+
+
+### Log In to the Azure VMs
+- To access the VMs, you need the public IP of the HAProxy VM and private IPs of the master/worker nodes, as well as the SSH key pair used during Terraform provisioning.
+- Terraform outputs: Run terraform output in the terraform/ directory to get:
+-  in the project i used password and username 
+- Azure CLI or access to Azure Portal to verify VM details if needed.
+- copy the username and teh public ip of the vm .
+- login  into your console  and input teh password  from the terrafrom script 
