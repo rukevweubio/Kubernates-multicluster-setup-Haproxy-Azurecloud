@@ -140,4 +140,71 @@ variable "haproxy_ip" {
 -  in the project i used password and username 
 - Azure CLI or access to Azure Portal to verify VM details if needed.
 - copy the username and teh public ip of the vm .
-- login  into your console  and input teh password  from the terrafrom script 
+- login  into your console  and input teh password  from the terrafrom script
+
+![terraform output ip address to login](https://github.com/rukevweubio/Kubernates-multicluster-setup-Haproxy-Azurecloud/blob/main/photo/Screenshot%20(2702).png)
+
+
+### Install HAProxy on the HAProxy VM
+- You are logged into the HAProxy VM username  nd password 
+- Update the Package Index:
+- Install HAProxy:
+```
+sudo apt insatll haproxy -y.
+ sudo systemctl status haproxy .
+haproxy -v
+sudo systemctl enable haproxy
+sudo systemctl status haproxy
+haproxy -f /etc/haproxy/haproxy.cfg -c
+sudo systemctl restart haproxy
+-----------
+sudo nano /etc/haproxy/haproxy.cfg
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    daemon
+    maxconn 2048
+    user haproxy
+    group haproxy
+
+defaults
+    log     global
+    mode    tcp
+    option  tcplog
+    option  dontlognull
+    retries 3
+    timeout connect 5s
+    timeout client  50s
+    timeout server  50s
+
+
+frontend kubernetes_api_frontend
+    bind *:6443
+    mode tcp
+    option tcplog
+    default_backend kubernetes_api_backend
+
+backend kubernetes_api_backend
+    mode tcp
+    balance roundrobin
+    option tcp-check
+    server master-1 10.0.1.5:6443 check fall 3 rise 2
+    server master-2 10.0.1.6:6443 check fall 3 rise 2
+
+
+frontend nodeport_frontend
+    bind *:80
+    mode tcp
+    option tcplog
+    default_backend nodeport_backend
+
+backend nodeport_backend
+    mode tcp
+    balance roundrobin
+    server worker-1 10.0.1.7:30080 check
+    server worker-2 10.0.1.8:30080 check
+    server worker-3 10.0.1.9:30080 check
+sudo systemctl restart haproxy
+sudo systemctl status haproxy
+
+```
