@@ -383,4 +383,12 @@ spec:
 kubectl apply -f manifest/deployment.yaml
 kubectl apply -f manifest /deployment.yaml
 ````
-
+### accessing the  springbott aplication 
+- enure  you copy the worker node private ip address of
+- open the haproxy file   at etc/haproxy/haproxy.cf
+-  add the frontend  and backend
+-  restart the haproxy
+-  test connectivity
+-  copy the  public ip of haproxy
+  
+![spring-boot-application](https://github.com/rukevweubio/Kubernates-multicluster-setup-Haproxy-Azurecloud/blob/main/photo/Screenshot%20(2719).png)
